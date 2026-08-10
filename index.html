@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>Travel Budget Calculator</title>
+</head>
+<body>
+  <div class="page">
+    <div class="hero-section">
+      <img class="hero-image" src="Images/Travel%20around%20World%20Wallpaper.jpeg" alt="Beautiful travel destination">
+
+      <div class="hero-content">
+        <div class="logo-row">
+          <img src="Images/travel-bag.png" alt="Travel Budget logo">
+          <div>
+            <h2>TravelBudget</h2>
+            <p>Plan Smart, Travel More</p>
+          </div>
+        </div>
+
+        <h1>Travel Budget Calculator</h1>
+        <p>Plan your trip, estimate expenses and make the most of your journey.</p>
+      </div>
+    </div>
+
+    <div class="dashboard">
+      <div class="trip-card">
+        <div class="card-title">
+          <img src="Images/travel-bag.png" alt="">
+          <h2>Trip Details</h2>
+        </div>
+
+        <div class="input-row">
+          <img src="Images/placeholder.png" alt="">
+          <label for="destination">Destination</label>
+          <input type="text" id="destination" placeholder="e.g., Bali, Thailand">
+        </div>
+
+        <div class="input-row">
+          <img src="Images/user.png" alt="">
+          <label for="travelers">Number of Travelers</label>
+          <input type="number" id="travelers" min="1">
+        </div>
+
+        <div class="input-row">
+          <img src="Images/calendar.png" alt="">
+          <label for="trip-days">Trip Duration</label>
+          <input type="number" id="trip-days" min="1">
+        </div>
+
+        <div class="section-divider">
+          <span>Estimated Expenses</span>
+        </div>
+
+        <div class="input-row">
+          <img src="Images/hotel.png" alt="">
+          <label for="hotel-expense">Hotel / Accommodation</label>
+          <input type="number" id="hotel-expense" min="0">
+        </div>
+
+        <div class="input-row">
+          <img src="Images/dinning-table.png" alt="">
+          <label for="food-expense">Food &amp; Dining</label>
+          <input type="number" id="food-expense" min="0">
+        </div>
+
+        <div class="input-row">
+          <img src="Images/delivery-truck.png" alt="">
+          <label for="transport-expense">Transport &amp; Local Travel</label>
+          <input type="number" id="transport-expense" min="0">
+        </div>
+
+        <div class="input-row">
+          <img src="Images/sightseeing.png" alt="">
+          <label for="activities-expense">Activities &amp; Sightseeing</label>
+          <input type="number" id="activities-expense" min="0">
+        </div>
+
+        <div class="input-row">
+          <img src="Images/online-shopping.png" alt="">
+          <label for="shopping-expense">Shopping</label>
+          <input type="number" id="shopping-expense" min="0">
+        </div>
+
+        <div class="input-row">
+          <img src="Images/ellipse.png" alt="">
+          <label for="other-expense">Others</label>
+          <input type="number" id="other-expense" min="0">
+        </div>
+
+        <div class="input-row">
+          <img src="Images/travel-bag.png" alt="">
+          <label for="total-budget-input">Total Budget</label>
+          <input type="number" id="total-budget-input" min="0">
+        </div>
+
+        <div class="input-row">
+          <img src="Images/ancestors.png" alt="">
+          <label for="per-head">Expense Per Head</label>
+          <input type="text" id="per-head" autofocus readonly>
+        </div>
+
+        <button type="button" class="calculate-button" onclick="calculateBudget()">
+          Calculate Budget
+        </button>
+
+        <p class="note">All amounts are in INR (Rs.)</p>
+      </div>
+
+      <div class="summary-card">
+        <div class="card-title">
+          <img src="Images/travel.png" alt="">
+          <h2>Budget Summary</h2>
+        </div>
+
+        <div class="summary-boxes">
+          <div class="summary-box blue-box">
+            <p>Total Budget</p>
+            <h3 id="total-budget">Rs. 0</h3>
+          </div>
+
+          <div class="summary-box green-box">
+            <p>Total Expense</p>
+            <h3 id="total-expense">Rs. 0</h3>
+          </div>
+
+          <div class="summary-box orange-box">
+            <p>Remaining Budget</p>
+            <h3 id="remaining-budget">Rs. 0</h3>
+          </div>
+
+          <div class="summary-box purple-box">
+            <p>Budget Status</p>
+            <h3 id="budget-status">-</h3>
+          </div>
+        </div>
+
+        <div class="details-area">
+          <div class="breakdown-card">
+            <h2>Expense Breakdown</h2>
+
+            <div class="breakdown-row">
+              <span>Hotel / Accommodation</span>
+              <strong id="hotel-output">Rs. 0</strong>
+              <small id="hotel-percent">0%</small>
+            </div>
+
+            <div class="breakdown-row">
+              <span>Food &amp; Dining</span>
+              <strong id="food-output">Rs. 0</strong>
+              <small id="food-percent">0%</small>
+            </div>
+
+            <div class="breakdown-row">
+              <span>Transport &amp; Local Travel</span>
+              <strong id="transport-output">Rs. 0</strong>
+              <small id="transport-percent">0%</small>
+            </div>
+
+            <div class="breakdown-row">
+              <span>Activities &amp; Sightseeing</span>
+              <strong id="activities-output">Rs. 0</strong>
+              <small id="activities-percent">0%</small>
+            </div>
+
+            <div class="breakdown-row">
+              <span>Shopping</span>
+              <strong id="shopping-output">Rs. 0</strong>
+              <small id="shopping-percent">0%</small>
+            </div>
+
+            <div class="breakdown-row">
+              <span>Others</span>
+              <strong id="other-output">Rs. 0</strong>
+              <small id="other-percent">0%</small>
+            </div>
+
+            <div class="total-row">
+              <span>Total Expense</span>
+              <strong id="breakdown-total">Rs. 0</strong>
+            </div>
+          </div>
+
+          <div class="tip-card">
+            <h2>Smart Tip</h2>
+            <div class="tip-image">
+              <img src="Images/travel.png" alt="Travel tip">
+            </div>
+            <p id="smart-tip">
+              You are doing great! Keep track of your expenses to enjoy a stress-free trip.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-message">
+      Have a safe trip and make beautiful memories!
+    </div>
+  </div>
+
+<script>
+
+function calculateBudget(){
+  let travellers = Number(document.querySelector(`#travelers`).value);
+
+let hotelAccommodation = Number(document.querySelector(`#hotel-expense`).value);
+
+let foodDinning = Number(document.querySelector(`#food-expense`).value);
+
+let transport = Number(document.querySelector(`#transport-expense`).value);
+
+let activities = Number(document.querySelector(`#activities-expense`).value);
+
+let shopping = Number(document.querySelector(`#shopping-expense`).value);
+
+let others = Number(document.querySelector(`#other-expense`).value);
+
+let totalbudget = Number(document.querySelector(`#total-budget-input`).value);
+
+let calculate = hotelAccommodation + foodDinning + transport + activities + shopping + others;
+
+
+let perhead = calculate / travellers;
+
+document.querySelector(`#per-head`).value =
+    `Rs. ${perhead.toFixed(2)}`;
+
+
+
+
+document.querySelector(`#total-budget`).textContent = `Rs. ${totalbudget}`;
+
+document.querySelector(`#total-expense`).textContent = `Rs. ${calculate}`;
+
+document.querySelector(`#remaining-budget`).textContent = `Rs. ${totalbudget - calculate}`;
+
+if (calculate < totalbudget){
+  document.querySelector(`#budget-status`).textContent = `On Track ✅`
+}
+else if (calculate === totalbudget){
+    document.querySelector(`#budget-status`).textContent = `You Have Exhausted Your Budget ⌛️`
+
+}
+else {
+  document.querySelector(`#budget-status`).textContent = `You Are In A Mess ❌`
+}
+
+document.querySelector(`#hotel-output`).textContent = `Rs. ${hotelAccommodation}`;
+
+document.querySelector(`#hotel-percent`).textContent= `${((hotelAccommodation/calculate)*100) .toFixed(2)}%`;
+
+
+document.querySelector(`#food-output`).textContent = `Rs. ${foodDinning}`;
+
+document.querySelector(`#food-percent`).textContent= `${((foodDinning/calculate)*100).toFixed(2)}%`;
+
+
+
+document.querySelector(`#transport-output`).textContent = `Rs. ${transport}`;
+
+document.querySelector(`#transport-percent`).textContent= `${((transport/calculate)*100).toFixed(2)}%`;
+
+
+
+document.querySelector(`#activities-output`).textContent = `Rs. ${activities}`;
+
+document.querySelector(`#activities-percent`).textContent= `${((activities/calculate)*100).toFixed(2)}%`;
+
+
+
+document.querySelector(`#shopping-output`).textContent = `Rs. ${shopping}`;
+
+document.querySelector(`#shopping-percent`).textContent= `${((shopping/calculate)*100).toFixed(2)}%`;
+
+
+
+document.querySelector(`#other-output`).textContent = `Rs. ${others}`;
+
+document.querySelector(`#other-percent`).textContent= `${((others/calculate)*100).toFixed(2)}%`;
+
+document.querySelector(`#breakdown-total`).textContent = `Rs. ${calculate}`;
+
+}
+
+
+
+
+</script>
+
+
+
+
+
+</body>
+</html>
