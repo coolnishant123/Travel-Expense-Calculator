@@ -231,11 +231,11 @@ document.querySelector(`#per-head`).value =
 
 
 
-document.querySelector(`#total-budget`).textContent = `Rs. ${totalbudget}`;
+document.querySelector(`#total-budget`).textContent = `Rs. ${(totalbudget).toFixed(2)}`;
 
-document.querySelector(`#total-expense`).textContent = `Rs. ${calculate}`;
+document.querySelector(`#total-expense`).textContent = `Rs. ${(calculate).toFixed(2)}`;
 
-document.querySelector(`#remaining-budget`).textContent = `Rs. ${totalbudget - calculate}`;
+document.querySelector(`#remaining-budget`).textContent = `Rs. ${(totalbudget - calculate).toFixed(2)}`;
 
 if (calculate < totalbudget){
   document.querySelector(`#budget-status`).textContent = `On Track ✅`
